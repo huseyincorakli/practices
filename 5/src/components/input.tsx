@@ -11,6 +11,8 @@ const Input = ({setTodos}) => {
         if (task.trim() !== '') {
           setTodos((prevTodos) => [
             ...prevTodos,
+            console.log(prevTodos),
+            
             { id: prevTodos.length + 1, task: task, isComplete: false }
           ]);
           setTask('');
