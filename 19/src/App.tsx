@@ -1,17 +1,38 @@
-// import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState,useEffect,FC } from 'react'
 import './App.css'
-import DropzoneComponent from './components/Dropzone'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import Section from './components/Section'
+import { MainContext } from './context/MainContext'
 
 
-//https://localhost:7131/api/Product
-function App() {
+const App:FC = () =>  {
+  const [theme,setTheme] = useState<string>('dark')
+  const [methods,setMethods]= useState<object>({})
+
+  const appendMethods= (newMethods:object)=>{
+    setMethods({
+      ...methods,
+      ...newMethods
+    })
+  }
+    useEffect(()=>{
+      document.body.className=theme;
+    },[theme])
   
+    const data = {
+      theme,
+      setTheme,
+      appendMethods,
+      ...methods,
+    }
 
   return (
-    <>
-      <div><DropzoneComponent/></div>
-    </>
+    <MainContext.Provider value={data}>
+      <Header/>
+      <Section/>
+      <Footer/>
+    </MainContext.Provider>
   )
 }
 
