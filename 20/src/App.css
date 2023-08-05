@@ -17,6 +17,10 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+.activeLink{
+  background-color: #747bff;
+  color:#dddddd;
+}
 
 @keyframes logo-spin {
   from {
@@ -39,4 +43,8 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.active{
+  background-color:#ddd;
 }
