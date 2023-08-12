@@ -1,0 +1,15 @@
+.active{
+    background-color:#ddd;
+}
+.Home{
+    background-color:red;
+    color:white;
+}
+.Profile{
+    background-color:purple;
+    color:white;
+}
+.Login{
+    background-color:blue;
+    color:white;
+}
