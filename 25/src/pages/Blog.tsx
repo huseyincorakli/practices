@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+interface Photo {
+  albumId: number;
+  id: number;
+  title: string;
+  thumbnailUrl: string;
+}
 
 const Blog = () => {
-  const posts = [
-    { id: 1, title: '1 Post', content: 'This is the content of the 1 post.' },
-    { id: 2, title: '2 Post', content: 'This is the content of the 2 post.' },
-    { id: 3, title: '3 Post', content: 'This is the content of the 3 post.' },
-    { id: 4, title: '4 Post', content: 'This is the content of the 4 post.' },
-    { id: 5, title: '5 Post', content: 'This is the content of the 5 post.' },
-    // Diğer gönderileri burada tanımlayabilirsiniz
-  ];
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/photos')
+      .then(response => response.json())
+      .then(data => {
+        setPhotos(data);
+        setLoading(false); // Veriler geldiğinde loading durumunu kapat
+      })
+      .catch(error => {
+        console.error('Error fetching photos:', error);
+        setLoading(false); // Hata durumunda da loading durumunu kapat
+      });
+  }, []);
+
+  if (loading) {
+    return <p>loading...</p>;
+  }
 
   return (
-    <div>
+    <div className='main'>
       <h2>Blog</h2>
-      {posts.map(post => (
-        <div key={post.id}>
-          <h3>{post.title}</h3>
-          <p>{post.content}</p>
-        </div>
+      {photos.map(photo => (
+        <img key={photo.id} src={photo.thumbnailUrl} alt="" />
       ))}
     </div>
   );
-}
+};
 
 export default Blog;

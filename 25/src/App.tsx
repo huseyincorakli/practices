@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import routes from './routes/routes';
 
@@ -15,7 +15,7 @@ function App() {
             <Route
               key={childIndex}
               path={childRoute.path}
-              element={childRoute.element}
+              element={childRoute.auth?<Navigate to={'/login'}/>:childRoute.element}
             />
           ))}
         </Route>

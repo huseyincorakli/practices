@@ -5,6 +5,11 @@ html, body {
   overflow: auto; /* Kaydırma çubuklarını gizler */
 }
 
+.dark{
+  background:black;
+  color:white;
+}
+
 .card {
   padding: 2em;
 }

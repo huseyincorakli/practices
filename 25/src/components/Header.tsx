@@ -5,6 +5,7 @@ import { setDark } from "../stores/ThemeStore";
 
 const Header = () => {
   const {dark} =useSelector((state:RootState)=>state.theme)
+  const {language}=useSelector((state:RootState)=>state.language)
   const dispatch= useDispatch()
   
   const changeTheme=()=>{
@@ -19,7 +20,7 @@ const Header = () => {
     <NavLink to={'blog'}>Blog</NavLink>
     <NavLink to={'profile'}>Profile</NavLink>
     <button onClick={changeTheme}>Dark Mod : {dark?'On':'Off'}</button>
-    <p>Dil:Türkçe</p>
+    <p>{language=='en'?'English':'Türkçe'}</p>
     </nav>
     <hr />
     </>
